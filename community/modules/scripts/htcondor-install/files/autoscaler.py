@@ -279,14 +279,14 @@ class AutoScaler:
                 if len(name_status) > 1:
                     name = name_status[0]
                     status = name_status[1]
-                    zone = name_status[2]
+                    # zone = name_status[2]  # this seems to return `undefined`
                     slot = "NO-SLOT"
                     slot_server = name.split("@")
                     if len(slot_server) > 1:
                         slot = slot_server[0]
-                        server = slot_server[1].split(".")[0]
+                        server, zone, *_ = slot_server[1].split(".")
                     else:
-                        server = slot_server[0].split(".")[0]
+                        server, zone, *_ = slot_server[0].split(".")
 
                     if self.debug > 0:
                         print(slot + ", " + server + ", " + status + "\n")
